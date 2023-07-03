@@ -2,21 +2,30 @@ import React,{useState} from 'react';
 
 
 function Presupuesto() {
-  const [isOn, setIsOn] = useState(false);
-  const toggleSwitch = () => {
-    setIsOn(!isOn);
+  const [switches, setSwitches] = useState([false, false, false, false]);
+
+  const switchLabels = ['Financiamiento externo', 'Financiamiento UTFSM', 'Financiamiento Propio', 'Relaciones Estudiantiles ·	PIE > A[SJ]'];
+
+  const toggleSwitch = (index) => {
+    const updatedSwitches = [...switches];
+    updatedSwitches[index] = !updatedSwitches[index];
+    setSwitches(updatedSwitches);
   };
   return (
     <div>
-        <label className="switch">
-        <input
-          type="checkbox"
-          checked={isOn}
-          onChange={toggleSwitch}
-        />
-        <span className="slider"></span>
-      </label>
-      <p>{isOn ? 'ON' : 'OFF'}</p>
+      {switches.map((isOn, index) => (
+        <div key={index}>
+          <label>{switchLabels[index]}</label>
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={isOn}
+              onChange={() => toggleSwitch(index)}
+            />
+            <span className="slider"></span>
+          </label>
+        </div>
+      ))}
     </div>
   );
 }
