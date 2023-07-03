@@ -1,12 +1,22 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 
 function Presupuesto() {
-
+  const [isOn, setIsOn] = useState(false);
+  const toggleSwitch = () => {
+    setIsOn(!isOn);
+  };
   return (
-
     <div>
-        presupuesto
+        <label className="switch">
+        <input
+          type="checkbox"
+          checked={isOn}
+          onChange={toggleSwitch}
+        />
+        <span className="slider"></span>
+      </label>
+      <p>{isOn ? 'ON' : 'OFF'}</p>
     </div>
   );
 }

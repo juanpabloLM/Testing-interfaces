@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo_usm from "./long-usm-icon.png"
 import './Postular.css'
 import { useState } from 'react';
@@ -18,7 +18,7 @@ function Postular() {
     setActiveSection(section);
   };
 
-  
+  let navigate = useNavigate();
   const goToNextSection = () => {
     if (activeSection === 'antecedentes') {
       setActiveSection('anexos');
@@ -31,7 +31,7 @@ function Postular() {
     } else if (activeSection === 'presupuesto') {
       setActiveSection('finalizarprocesos');
     } else if (activeSection === 'finalizarprocesos') {
-      // en la última sección
+      navigate('..');
     }
   };
 
